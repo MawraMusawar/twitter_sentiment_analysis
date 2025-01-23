@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sentiment Analysis</h1>
+        <p>Enter the Twitter handle or hashtag to import tweets:</p>
+        <form method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="text" name="query" placeholder="Enter handle or hashtag" required>
+            <button type="submit">Search</button>
+        </form>
+        <a href="{% static 'paper/paper.pdf' %}" target="_blank">Read the Paper</a>
+        
+        {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Tweet</th>
+                    <th>Sentiment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.tweet }}</td>
+                    <td>{{ result.sentiment }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        {% if graph %}
+        <div>
+            <h3>Sentiment Distribution</h3>
+            <div>
+                {{ graph|safe }}
+            </div>
+        </div>
+        {% endif %}
+        {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
