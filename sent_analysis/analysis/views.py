@@ -10,7 +10,7 @@ model = pickle.load(open('analysis/model/trained_Model_logisticRegression.pkl', 
 vectorizer = pickle.load(open('analysis/model/vectorizer_logisticRegression.pkl', 'rb'))
 
 # Twitter API credentials
-BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAJ8%2FxwEAAAAAYFGsU3IwHceUfI3pyJwN3kB%2BGGk%3DF1Y0dnZ8jKS3HAwrwc6R5ISiVtfmw6phFQwYDf70QA0vgbZR8c"
+BEARER_TOKEN = " "
 client = tweepy.Client(bearer_token=BEARER_TOKEN)
 
 def index(request):
